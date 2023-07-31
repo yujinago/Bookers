@@ -27,35 +27,35 @@
 </table>
 
 <h2>New book</h2>
-<% if @book.errors.any? %>
-    <div class="errors">
-        <h2 class="errors-title">
-            <% if @book.errors.count == 1 %>
-                <%= @book.errors.count %> error prohibited this book from being saved:
-            <% else %>
-                <%= @book.errors.count %> errors prohibited this book from being saved:
-            <% end %>
-        </h2>
-        <ul>
-            <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-<% end %>
-
 <%= form_with model: @book do |f| %>
-    <div class="book-label">
-        <label>Title</label>
+    <% if @book.errors.any? %>
+        <div class="errors">
+            <h2 class="errors-title">
+                <% if @book.errors.count == 1 %>
+                    <%= @book.errors.count %> error prohibited this book from being saved:
+                <% else %>
+                    <%= @book.errors.count %> errors prohibited this book from being saved:
+                <% end %>
+            </h2>
+            <ul>
+                <% @book.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :title %>
         <%= f.text_field :title %>
     </div>
     
-    <div class="book-label">
-        <label>Body</label>
+    <div class="field">
+        <%= f.label :body %>
         <%= f.text_area :body %>
     </div>
     
-    <div class="book-submit">
+    <div class="actions">
         <%= f.submit 'Create Book' %>
     </div>
 <% end %>
